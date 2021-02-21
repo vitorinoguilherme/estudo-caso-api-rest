@@ -1,5 +1,6 @@
 package org.example.project.api.users;
 
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -16,7 +17,7 @@ public class UserResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response create(UserRequest request) {
+    public Response create(@Valid UserRequest request) {
         User user = new User(request.name, request.email, request.password);
         userRepository.save(user);
         return Response.status(Status.CREATED)
@@ -56,7 +57,7 @@ public class UserResource {
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response update(@PathParam("id") int id, UserRequest request) {
+    public Response update(@PathParam("id") int id, @Valid UserRequest request) {
         User user = userRepository.getById(id);
 
         if (user == null) {
