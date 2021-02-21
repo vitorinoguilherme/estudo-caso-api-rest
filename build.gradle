@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+application {
+    mainClass = "org.example.project.App"
+}
+
+run {
+    standardInput = System.in
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '3.0.1'
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-grizzly2-http', version: '3.0.1'
+    compile group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: '3.0.1'
+    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '3.0.1'
+    compile group: 'org.glassfish.jersey.ext', name: 'jersey-bean-validation', version: '3.0.1'
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.12.1'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}
