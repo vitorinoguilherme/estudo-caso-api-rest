@@ -1,18 +1,28 @@
-org/example/project/TesteResource.java
- org.example.project.TesteResource
 org/example/project/App.java
  org.example.project.App
-org/example/project/api/users/UserResponse.java
- org.example.project.api.users.UserResponse
-org/example/project/api/users/UserRepository.java
- org.example.project.api.users.UserRepository
-org/example/project/api/users/User.java
- org.example.project.api.users.User
-org/example/project/api/users/UserRequest.java
- org.example.project.api.users.UserRequest
-org/example/project/api/users/UserResource.java
- org.example.project.api.users.UserResource
 org/example/project/exceptions/BadRequestExceptionMapper.java
  org.example.project.exceptions.BadRequestExceptionMapper
  org.example.project.exceptions.BadRequestExceptionMapper$BadRequestBody
  org.example.project.exceptions.BadRequestExceptionMapper$Violation
+org/example/project/TesteResource.java
+ org.example.project.TesteResource
+org/example/project/api/users/UserRequest.java
+ org.example.project.api.users.UserRequest
+org/example/project/api/users/UserRepository.java
+ org.example.project.api.users.UserRepository
+org/example/project/api/departamentos/DepartamentoResponse.java
+ org.example.project.api.departamentos.DepartamentoResponse
+org/example/project/api/users/UserResponse.java
+ org.example.project.api.users.UserResponse
+org/example/project/api/users/UserResource.java
+ org.example.project.api.users.UserResource
+org/example/project/api/users/User.java
+ org.example.project.api.users.User
+org/example/project/api/departamentos/Departamento.java
+ org.example.project.api.departamentos.Departamento
+org/example/project/api/departamentos/DepartamentoRepository.java
+ org.example.project.api.departamentos.DepartamentoRepository
+org/example/project/api/departamentos/DepartamentoRequest.java
+ org.example.project.api.departamentos.DepartamentoRequest
+org/example/project/api/departamentos/DepartamentoResource.java
+ org.example.project.api.departamentos.DepartamentoResource
