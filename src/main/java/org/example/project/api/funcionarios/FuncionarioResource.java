@@ -1,9 +1,11 @@
 package org.example.project.api.funcionarios;
 
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
+import org.example.project.exceptions.MyApplicationException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,13 +17,20 @@ public class FuncionarioResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response create(FuncionarioRequest request) {
+    public Response create(@Valid FuncionarioRequest request) throws MyApplicationException {
         Funcionario funcionario = new Funcionario(
                 request.CPF,
                 request.nome,
                 request.email,
                 request.cod_departamento
         );
+
+        if (funcionarioRepository.checkFuncionarioCPF(funcionario) != null) {
+            throw new MyApplicationException("{\n \"violations\": [\n  {" +
+                            "\n   \"path\": \"arg.CPF\"," +
+                            "\n   \"message\": \"Funcionario cadastrado com o CPF definido\" " +
+                            "\n  } \n ]\n}", Status.CONFLICT);
+        }
 
         funcionarioRepository.save(funcionario);
         return Response.status(Status.CREATED)
@@ -62,7 +71,7 @@ public class FuncionarioResource {
     @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response update(@PathParam("id") int id, FuncionarioRequest request) {
+    public Response update(@PathParam("id") int id, @Valid FuncionarioRequest request) throws MyApplicationException {
         Funcionario funcionario = funcionarioRepository.getById(id);
 
         if (funcionario == null) {
@@ -76,6 +85,12 @@ public class FuncionarioResource {
                 request.email,
                 request.cod_departamento
         );
+        if (funcionarioRepository.checkFuncionarioCPF(newFuncionario) != null) {
+            throw new MyApplicationException("{\n \"violations\": [\n  {" +
+                            "\n   \"path\": \"arg.CPF\"," +
+                            "\n   \"message\": \"Funcionario cadastrado com o CPF definido\" " +
+                            "\n  } \n ]\n}", Status.CONFLICT);
+        }
         funcionarioRepository.update(newFuncionario);
 
         return Response.status(Status.OK)

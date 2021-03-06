@@ -15,8 +15,16 @@ public class FuncionarioRepository {
         return this.funcionarios;
     }
 
+    public Funcionario checkFuncionarioCPF(Funcionario newFuncionario) {
+        return this.funcionarios.stream()
+                .filter(funcionario -> newFuncionario.getCPF().equals(funcionario.getCPF()))
+                .findAny()
+                .orElse(null);
+    }
+
     public Funcionario getById(int id) {
-        return this.funcionarios.stream().filter(funcionario -> id == funcionario.getId())
+        return this.funcionarios.stream()
+                .filter(funcionario -> id == funcionario.getId())
                 .findAny()
                 .orElse(null);
     }
